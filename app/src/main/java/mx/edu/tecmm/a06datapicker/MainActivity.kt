@@ -1,8 +1,10 @@
 package mx.edu.tecmm.a06datapicker
 
 import android.app.DatePickerDialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         fechita = findViewById(R.id.edFechita)
 
         fechita.setOnClickListener {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(fechita.windowToken, 0)
             showDataPickerDialog();
         }
     }
@@ -23,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         val newFragment = DatePickerDateFragment.newInstance(DatePickerDialog
             .OnDateSetListener { _, year, month, day ->
             val selectedDate = day.toString() + " / " + (month + 1) + " / " + year
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+                imm?.hideSoftInputFromWindow(fechita.windowToken, 0)
             fechita.setText(selectedDate)
         })
         newFragment.show(supportFragmentManager, "datePicker")

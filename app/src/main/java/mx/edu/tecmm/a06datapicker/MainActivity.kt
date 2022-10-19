@@ -2,10 +2,12 @@ package mx.edu.tecmm.a06datapicker
 
 import android.app.DatePickerDialog
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var fechita:EditText
@@ -32,5 +34,7 @@ class MainActivity : AppCompatActivity() {
             fechita.setText(selectedDate)
         })
         newFragment.show(supportFragmentManager, "datePicker")
+
+
     }
 }
